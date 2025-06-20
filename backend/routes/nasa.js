@@ -11,6 +11,6 @@ router.get("/mars/:rover/photos", nasaController.getMarsPhotos);
 router.get("/mars/:rover/photos/:sol", nasaController.getMarsPhotosBySol);
 
 // Near Earth Objects routes
-router.get("/neo", nasaController.getNEO);
+router.get("/neo", nasaController.getNearEarthObjects);
 
 module.exports = router;
