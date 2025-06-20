@@ -1,6 +1,6 @@
 const axios = require("axios"); // Import axios for making HTTP requests
 // Load environment variables
-const NASA_API_KEY = process.env.NASA_API_KEY || "DEMO_KEY";
+const NASA_API_KEY = process.env.NASA_API_KEY;
 const NASA_BASE_URL = "https://api.nasa.gov";
 
 // Helper function to make NASA API calls
