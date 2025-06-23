@@ -18,7 +18,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Rocket className="h-8 w-8 text-space-star animate-pulse-slow" />
-            <span className="text-xl font-bold text-glow">NASA Explorer</span>
+            <span className="text-2xl font-bold text-glow">NASA Explorer</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -38,12 +38,16 @@ const Navigation = () => {
           {/* Mobile Navigation */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="transition-transform duration-200 hover:scale-110 hover:text-space-star cursor-pointer"
+              >
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="glass-card border-white/20">
-              <div className="flex flex-col space-y-4 mt-8">
+              <div className="flex flex-col space-y-4 mt-12">
                 {navItems.map((item) => (
                   <a
                     key={item.label}
@@ -51,7 +55,7 @@ const Navigation = () => {
                     onClick={() => setIsOpen(false)}
                     className="flex items-center space-x-3 text-foreground/80 hover:text-space-star transition-colors duration-300 py-2"
                   >
-                    <item.icon className="h-5 w-5" />
+                    <item.icon className="h-5 w-5 ml-7" />
                     <span>{item.label}</span>
                   </a>
                 ))}
