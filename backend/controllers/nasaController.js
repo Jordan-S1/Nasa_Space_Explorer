@@ -45,6 +45,25 @@ exports.getAPODByDate = async (req, res, next) => {
   }
 };
 
+// Download Image Controller
+exports.downloadImage = async (req, res, next) => {
+  try {
+    const { imageUrl } = req.query;
+    if (!imageUrl) {
+      return res.status(400).json({ message: "Missing imageUrl query param" });
+    }
+
+    const response = await axios.get(imageUrl, { responseType: "stream" });
+
+    res.setHeader("Content-Type", response.headers["content-type"]);
+
+    response.data.pipe(res); // Stream image to client
+  } catch (error) {
+    console.error("Image download error:", error.message);
+    res.status(500).json({ message: "Failed to download image" });
+  }
+};
+
 // Mars Rover Controllers
 // Get Mars photos by rover
 exports.getMarsPhotos = async (req, res, next) => {

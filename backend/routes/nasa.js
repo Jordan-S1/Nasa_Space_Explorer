@@ -5,6 +5,8 @@ const nasaController = require("../controllers/nasaController");
 // APOD routes
 router.get("/apod", nasaController.getAPOD);
 router.get("/apod/:date", nasaController.getAPODByDate);
+// Download Image route
+router.get("/download-image", nasaController.downloadImage);
 
 // Mars Rover Photos routes
 router.get("/mars/:rover/photos", nasaController.getMarsPhotos);
