@@ -85,24 +85,6 @@ exports.getMarsPhotos = async (req, res, next) => {
     next(error);
   }
 };
-// Get Mars photos by sol
-exports.getMarsPhotosBySol = async (req, res, next) => {
-  try {
-    const { rover, sol } = req.params;
-    const { camera } = req.query;
-
-    const data = await makeNASARequest(
-      `/mars-photos/api/v1/rovers/${rover}/photos`,
-      {
-        sol,
-        camera,
-      }
-    );
-    res.json(data);
-  } catch (error) {
-    next(error);
-  }
-};
 
 // Near Earth Objects Controller
 exports.getNearEarthObjects = async (req, res, next) => {

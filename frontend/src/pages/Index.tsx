@@ -1,12 +1,16 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import APOD from "@/components/APOD";
+import MarsRover from "@/components/MarsRover";
 const Index = () => {
   return (
     <div className="min-h-screen bg-cosmic-gradient">
+      {/* Navigation and Hero Section */}
       <Navigation />
       <Hero />
+      {/* Main Content */}
       <APOD />
+      <MarsRover />
       {/* Footer */}
       <footer className="border-t border-white/10 bg-space-blue/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-8">
