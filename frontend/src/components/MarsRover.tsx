@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,8 +12,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Globe, Camera, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const API_BASE_URL = "http://localhost:5000"; // Replace with your backend URL
+// backend API base URL
+const API_BASE_URL = "http://localhost:5000";
 
 const MarsRover = () => {
   const [rover, setRover] = useState("curiosity");
@@ -23,6 +25,9 @@ const MarsRover = () => {
   const [searchMode, setSearchMode] = useState<"sol" | "earth_date">("sol");
   const [marsPhotos, setMarsPhotos] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const photosPerPage = 25; // Number of photos per page
+  const errorToastShown = useRef(false);
 
   // Rover options
   const rovers = [
@@ -48,7 +53,7 @@ const MarsRover = () => {
   useEffect(() => {
     const fetchPhotos = async () => {
       setLoading(true);
-
+      errorToastShown.current = false;
       try {
         const params: Record<string, string | number> = {};
 
@@ -71,12 +76,15 @@ const MarsRover = () => {
         setMarsPhotos(data.photos || []);
       } catch (err: any) {
         console.error("Fetch error:", err);
-        toast.error("Failed to load Mars rover photos", {
-          description:
-            err?.response?.data?.message ||
-            err.message ||
-            "An unexpected error occurred.",
-        });
+        if (!errorToastShown.current) {
+          toast.error("Failed to load Mars rover photos", {
+            description:
+              err?.response?.data?.message ||
+              err.message ||
+              "An unexpected error occurred.",
+          });
+          errorToastShown.current = true;
+        }
         setMarsPhotos([]);
       } finally {
         setLoading(false);
@@ -87,6 +95,17 @@ const MarsRover = () => {
     fetchPhotos();
   }, [rover, sol, earthDate, camera, searchMode]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [rover, sol, earthDate, camera, searchMode]);
+
+  const totalPages = Math.ceil(marsPhotos.length / photosPerPage);
+  const paginatedPhotos = useMemo(() => {
+    const start = (currentPage - 1) * photosPerPage;
+    return marsPhotos.slice(start, start + photosPerPage);
+  }, [marsPhotos, currentPage]);
+
+  // Render the Mars Rover Gallery component
   return (
     <section
       id="mars"
@@ -207,7 +226,7 @@ const MarsRover = () => {
         {/* Photos Grid */}
         {!loading && marsPhotos.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {marsPhotos.slice(0, 20).map((photo: any) => (
+            {paginatedPhotos.map((photo: any) => (
               <Card
                 key={photo.id}
                 className="glass-card overflow-hidden group hover:scale-105 transition-transform duration-300"
@@ -260,6 +279,29 @@ const MarsRover = () => {
             <p className="text-foreground/60">
               Try adjusting the sol or earth date or camera selection
             </p>
+          </div>
+        )}
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex justify-center mt-8 gap-4">
+            <Button
+              className="cosmic-button group disabled:opacity-50"
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </Button>
+            <span className="self-center text-lg">
+              Page {currentPage} of {totalPages}
+            </span>
+            <Button
+              className="cosmic-button group disabled:opacity-50"
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </Button>
           </div>
         )}
       </div>

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
-//import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import {
@@ -21,14 +20,15 @@ interface APODData {
   media_type: "image" | "video";
   copyright?: string;
 }
-const API_BASE_URL = "http://localhost:5000"; //import.meta.env.VITE_BACKEND_URL ||
+// Base URL for the backend API
+const API_BASE_URL = "http://localhost:5000";
 const APOD = () => {
   // State to manage selected date and APOD data
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split("T")[0]
   );
   const [apodData, setApodData] = useState<APODData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [downloading, setDownloading] = useState(false);
   const errorToastShown = useRef(false);
 
@@ -41,12 +41,16 @@ const APOD = () => {
         params: { date },
       });
       setApodData(response.data);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      console.error("Fetch error:", error);
       if (!errorToastShown.current) {
-        toast.error(
-          "Failed to load Astronomy Picture of the Day. Please try again."
-        );
+        toast.error("Failed to load Astronomy Picture of the Day", {
+          description:
+            error?.response?.data?.message ||
+            error.message ||
+            "An unexpected error occurred.",
+        });
         errorToastShown.current = true;
       }
     } finally {

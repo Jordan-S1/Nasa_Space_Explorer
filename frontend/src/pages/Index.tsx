@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import APOD from "@/components/APOD";
 import MarsRover from "@/components/MarsRover";
+import NearEarthObjects from "@/components/NearEarthObjects";
 const Index = () => {
   return (
     <div className="min-h-screen bg-cosmic-gradient">
@@ -11,6 +12,7 @@ const Index = () => {
       {/* Main Content */}
       <APOD />
       <MarsRover />
+      <NearEarthObjects />
       {/* Footer */}
       <footer className="border-t border-white/10 bg-space-blue/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-8">
