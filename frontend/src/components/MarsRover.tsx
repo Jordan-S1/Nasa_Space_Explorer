@@ -229,7 +229,7 @@ const MarsRover = () => {
             {paginatedPhotos.map((photo: any) => (
               <Card
                 key={photo.id}
-                className="glass-card overflow-hidden group hover:scale-105 transition-transform duration-300"
+                className="bg-space-blue overflow-hidden group hover:scale-105 transition-transform duration-300"
               >
                 <div className="relative">
                   <img

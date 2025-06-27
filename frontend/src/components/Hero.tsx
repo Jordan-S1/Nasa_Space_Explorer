@@ -7,7 +7,10 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section
+      id="hero"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+    >
       {/* Animated background stars */}
       <div className="stars">
         {[...Array(100)].map((_, i) => (

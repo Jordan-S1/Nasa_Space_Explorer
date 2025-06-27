@@ -18,7 +18,11 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Rocket className="h-8 w-8 text-space-star animate-pulse-slow" />
-            <span className="text-2xl font-bold text-glow">NASA Explorer</span>
+            <a href="#hero">
+              <span className="text-2xl font-bold text-glow cursor-pointer">
+                NASA Explorer
+              </span>
+            </a>
           </div>
 
           {/* Desktop Navigation */}
@@ -46,7 +50,10 @@ const Navigation = () => {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="glass-card border-white/20">
+            <SheetContent
+              side="right"
+              className="bg-space-blue border-white/20"
+            >
               <div className="flex flex-col space-y-4 mt-12">
                 {navItems.map((item) => (
                   <a

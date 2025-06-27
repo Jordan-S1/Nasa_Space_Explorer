@@ -180,7 +180,7 @@ const NearEarthObjects = () => {
         {/* Total Objects Card */}
         {!isLoading && neoData.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <Card className="glass-card">
+            <Card className="bg-space-blue">
               <CardHeader>
                 <CardTitle className="text-2xl flex items-center justify-center">
                   <Zap className="h-7 w-7 text-blue-400 mr-2" />
@@ -195,7 +195,7 @@ const NearEarthObjects = () => {
             </Card>
 
             {/* Hazardous Card */}
-            <Card className="glass-card ">
+            <Card className="bg-space-blue">
               <CardHeader>
                 <CardTitle className="text-2xl flex items-center justify-center">
                   <AlertTriangle className="h-7 w-7 text-red-400 mr-2" />
@@ -214,7 +214,7 @@ const NearEarthObjects = () => {
             </Card>
 
             {/* Safe Card */}
-            <Card className="glass-card">
+            <Card className="bg-space-blue">
               <CardHeader>
                 <CardTitle className="text-2xl flex items-center justify-center">
                   <Gauge className="h-7 w-7 text-green-400 mr-2" />
@@ -233,7 +233,7 @@ const NearEarthObjects = () => {
             </Card>
 
             {/* Average Size Card */}
-            <Card className="glass-card">
+            <Card className="bg-space-blue">
               <CardHeader>
                 <CardTitle className="text-2xl flex items-center justify-center">
                   <Ruler className="h-7 w-7 text-purple-400 mr-2" />
@@ -286,7 +286,7 @@ const NearEarthObjects = () => {
                 return (
                   <Card
                     key={obj.id}
-                    className="glass-card hover:scale-105 transition-transform duration-300"
+                    className="bg-space-purple hover:scale-105 transition-transform duration-300"
                   >
                     <CardHeader>
                       <div className="flex items-start justify-between">
@@ -295,7 +295,7 @@ const NearEarthObjects = () => {
                         </CardTitle>
                         <div className="flex flex-col gap-2">
                           {obj.is_potentially_hazardous_asteroid && (
-                            <Badge variant="destructive" className="text-xs">
+                            <Badge variant="destructive" className="text-sm">
                               <AlertTriangle className="h-3 w-3 mr-1" />
                               Hazardous
                             </Badge>
