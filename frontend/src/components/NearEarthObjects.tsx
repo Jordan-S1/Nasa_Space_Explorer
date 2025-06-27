@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Zap, AlertTriangle, Calendar, Ruler, Gauge } from "lucide-react";
 import { toast } from "sonner";
+import { toastQueue } from "@/lib/toastQueue";
 import { Button } from "@/components/ui/button";
 
 // Base URL for the backend API
@@ -86,14 +87,17 @@ const NearEarthObjects = () => {
         });
         setNeoData(objects);
       } catch (err: any) {
+        // Log the error and show a toast notification
         console.error("Fetch error:", err);
         if (!errorToastShown.current) {
-          toast.error("Failed to load Near Earth Objects", {
-            description:
-              err?.response?.data?.message ||
-              err.message ||
-              "An unexpected error occurred.",
-          });
+          toastQueue.enqueue(() =>
+            toast.error("Failed to load Near Earth Objects", {
+              description:
+                err?.response?.data?.message ||
+                err.message ||
+                "An unexpected error occurred.",
+            })
+          );
           errorToastShown.current = true;
         }
       } finally {

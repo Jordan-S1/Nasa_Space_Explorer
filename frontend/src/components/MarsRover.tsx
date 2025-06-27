@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import axios from "axios";
 import { toast } from "sonner";
+import { toastQueue } from "@/lib/toastQueue";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Select,
@@ -75,14 +76,18 @@ const MarsRover = () => {
         );
         setMarsPhotos(data.photos || []);
       } catch (err: any) {
+        // Log the error and show a toast notification
         console.error("Fetch error:", err);
         if (!errorToastShown.current) {
-          toast.error("Failed to load Mars rover photos", {
-            description:
-              err?.response?.data?.message ||
-              err.message ||
-              "An unexpected error occurred.",
-          });
+          toastQueue.enqueue(() =>
+            toast.error("Failed to load Mars Rover Photos", {
+              description:
+                err?.response?.data?.message ||
+                err.message ||
+                "An unexpected error occurred.",
+            })
+          );
+          // Set the flag to prevent duplicate toasts
           errorToastShown.current = true;
         }
         setMarsPhotos([]);

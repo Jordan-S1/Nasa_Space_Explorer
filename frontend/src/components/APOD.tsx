@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Calendar, ExternalLink, Download, Camera } from "lucide-react";
 import { toast } from "sonner";
+import { toastQueue } from "@/lib/toastQueue";
 // Define the structure of the APOD data
 interface APODData {
   date: string;
@@ -40,17 +41,20 @@ const APOD = () => {
       const response = await axios.get(`${API_BASE_URL}/api/nasa/apod`, {
         params: { date },
       });
-      setApodData(response.data);
+      setApodData(response.data); // Set the fetched APOD data
     } catch (error: any) {
-      console.error(error);
+      // Log the error and show a toast notification
       console.error("Fetch error:", error);
       if (!errorToastShown.current) {
-        toast.error("Failed to load Astronomy Picture of the Day", {
-          description:
-            error?.response?.data?.message ||
-            error.message ||
-            "An unexpected error occurred.",
-        });
+        toastQueue.enqueue(() =>
+          toast.error("Failed to load Astronomy Picture of the Day", {
+            description:
+              error?.response?.data?.message ||
+              error.message ||
+              "An unexpected error occurred.",
+          })
+        );
+        // Set the flag to prevent duplicate toasts
         errorToastShown.current = true;
       }
     } finally {
