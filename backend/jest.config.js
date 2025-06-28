@@ -4,7 +4,7 @@ module.exports = {
     "controllers/**/*.js",
     "routes/**/*.js",
     "middleware/**/*.js",
-    "!index.js",
+    "!server.js",
   ],
   coverageDirectory: "coverage",
   coverageReporters: ["text", "lcov", "html"],
