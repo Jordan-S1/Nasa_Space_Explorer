@@ -35,7 +35,7 @@ exports.getAPOD = async (req, res, next) => {
   }
 };
 // Get APOD by date
-exports.getAPODByDate = async (req, res, next) => {
+/*exports.getAPODByDate = async (req, res, next) => {
   try {
     const { date } = req.params;
     const data = await makeNASARequest("/planetary/apod", { date });
@@ -43,7 +43,7 @@ exports.getAPODByDate = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+};*/
 
 // Download Image Controller
 exports.downloadImage = async (req, res, next) => {

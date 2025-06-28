@@ -16,18 +16,13 @@ app.use(express.json());
 // Routes
 app.use("/api/nasa", nasaRoutes);
 
-// Health Check Route
-app.get("/health", (req, res) => {
-  res.json({
-    status: "OK",
-    message: "NASA Space Explorer Backend is running!",
-  });
-});
-
 // Error Handling Middleware
 app.use(errorHandler);
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  // Start the server
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+module.exports = app; // Export app for testing
