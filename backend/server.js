@@ -12,10 +12,7 @@ const PORT = process.env.PORT;
 // Middleware
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173", // Vite dev server
-      "https://nasa-space-explorer-hazel.vercel.app/", // Your deployed frontend
-    ],
+    origin: "*",
   })
 );
 app.use(express.json());
