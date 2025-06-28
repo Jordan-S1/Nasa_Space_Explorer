@@ -2,7 +2,7 @@ const request = require("supertest");
 const nock = require("nock");
 
 // Import the actual app
-const app = require("../../server");
+const app = require("../../index");
 
 describe("NASA API Integration Tests", () => {
   beforeEach(() => {
