@@ -13,13 +13,19 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 
+// Root route
+app.get("/", (req, res) => {
+  res.json({
+    message: "Backend API is running!",
+    version: "1.0.0",
+    endpoints: {
+      nasa: "/api/nasa",
+    },
+  });
+});
+
 // Routes
 app.use("/api/nasa", nasaRoutes);
-
-// Health Check Route
-app.get("/api/health", (req, res) => {
-  res.status(200).json({ message: "API is running" });
-});
 
 // Error Handling Middleware
 app.use(errorHandler);
