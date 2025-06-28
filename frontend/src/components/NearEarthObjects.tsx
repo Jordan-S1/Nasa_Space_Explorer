@@ -9,7 +9,7 @@ import { toastQueue } from "@/lib/toastQueue";
 import { Button } from "@/components/ui/button";
 
 // Base URL for the backend API
-const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+const API_BASE_URL = "https://nasa-space-explorer-backend-six.vercel.app/";
 
 // Define the structure of a Near Earth Object
 interface NearEarthObject {
