@@ -13,11 +13,6 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 
-// Health Check Route
-app.get("/", (req, res) => {
-  res.send("Server is running");
-});
-
 // Routes
 app.use("/api/nasa", nasaRoutes);
 
