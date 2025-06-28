@@ -101,7 +101,7 @@ describe("MarsRover component", () => {
   });
 
   it("paginates photos", async () => {
-    // Create 37 photos to ensure pagination (25 + 12 = 37 total)
+    // Create 37 photos to ensure pagination works
     const manyPhotos = Array.from({ length: 37 }, (_, i) => ({
       id: i + 1,
       img_src: `https://mars.nasa.gov/photo${i + 1}.jpg`,
@@ -119,7 +119,7 @@ describe("MarsRover component", () => {
     });
     expect(headings.length).toBeGreaterThan(0);
 
-    // Wait for first page to load (should be 25 images, not 26)
+    // Wait for first page to load and check initial photos
     await waitFor(() => {
       expect(screen.getAllByRole("img")).toHaveLength(26);
     });
