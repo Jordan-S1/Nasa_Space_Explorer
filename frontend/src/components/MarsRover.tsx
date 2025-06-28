@@ -16,7 +16,7 @@ import { Globe, Camera, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // backend API base URL
-const API_BASE_URL = "https://nasa-space-explorer-backend-six.vercel.app/";
+const API_BASE_URL = "http://localhost:5000";
 
 const MarsRover = () => {
   const [rover, setRover] = useState("curiosity");
