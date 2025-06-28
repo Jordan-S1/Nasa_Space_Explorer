@@ -22,7 +22,7 @@ interface APODData {
   copyright?: string;
 }
 // Base URL for the backend API
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 const APOD = () => {
   // State to manage selected date and APOD data
   const [selectedDate, setSelectedDate] = useState(
