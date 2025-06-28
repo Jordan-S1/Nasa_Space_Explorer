@@ -22,7 +22,7 @@ interface APODData {
   copyright?: string;
 }
 // Base URL for the backend API
-const API_BASE_URL = "https://nasa-space-explorer-server.vercel.app/";
+const API_BASE_URL = "https://nasa-space-explorer-server.vercel.app";
 const APOD = () => {
   // State to manage selected date and APOD data
   const [selectedDate, setSelectedDate] = useState(
