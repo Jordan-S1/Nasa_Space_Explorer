@@ -19,7 +19,7 @@ const makeNASARequest = async (endpoint, params = {}) => {
   }
 };
 
-// APOD Controllers
+// APOD Controller
 exports.getAPOD = async (req, res, next) => {
   try {
     const { date, count, start_date, end_date } = req.query;
@@ -34,16 +34,6 @@ exports.getAPOD = async (req, res, next) => {
     next(error);
   }
 };
-// Get APOD by date
-/*exports.getAPODByDate = async (req, res, next) => {
-  try {
-    const { date } = req.params;
-    const data = await makeNASARequest("/planetary/apod", { date });
-    res.json(data);
-  } catch (error) {
-    next(error);
-  }
-};*/
 
 // Download Image Controller
 exports.downloadImage = async (req, res, next) => {
@@ -64,8 +54,7 @@ exports.downloadImage = async (req, res, next) => {
   }
 };
 
-// Mars Rover Controllers
-// Get Mars photos by rover
+// Mars Rover Controller
 exports.getMarsPhotos = async (req, res, next) => {
   try {
     const { rover } = req.params;

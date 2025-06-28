@@ -103,6 +103,7 @@ const APOD = () => {
       <section
         id="apod"
         className="min-h-screen flex items-center justify-center px-4"
+        data-testid="apod-loading"
       >
         <div className="glass-card p-8 rounded-xl animate-pulse space-y-4">
           <div className="h-8 bg-white/20 rounded w-3/4 mx-auto" />

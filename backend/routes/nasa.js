@@ -2,10 +2,8 @@ const express = require("express");
 const router = express.Router();
 const nasaController = require("../controllers/nasaController");
 
-// APOD routes
+// APOD route
 router.get("/apod", nasaController.getAPOD);
-// Get APOD by date
-//router.get("/apod/:date", nasaController.getAPODByDate);
 // Download Image route
 router.get("/download-image", nasaController.downloadImage);
 
