@@ -22,7 +22,7 @@ interface APODData {
   copyright?: string;
 }
 // Base URL for the backend API
-const API_BASE_URL = "https://nasa-space-explorer-server.vercel.app";
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 const APOD = () => {
   // State to manage selected date and APOD data
   const [selectedDate, setSelectedDate] = useState(
@@ -232,3 +232,5 @@ const APOD = () => {
 };
 
 export default APOD;
+// This code defines the APOD component that fetches and displays NASA's Astronomy Picture of the Day (APOD) 
+// with a date picker and download functionality.

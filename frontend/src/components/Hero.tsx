@@ -63,4 +63,3 @@ const Hero = () => {
 
 export default Hero;
 // This code defines a Hero component that displays a hero section with animated stars, a title, a subtitle, and a button to scroll to the content section.
-// The background stars are created using CSS animations, and the button has an arrow icon that animates on hover.

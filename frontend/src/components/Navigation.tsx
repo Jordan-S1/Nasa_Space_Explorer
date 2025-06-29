@@ -76,3 +76,4 @@ const Navigation = () => {
 };
 
 export default Navigation;
+// This component provides a responsive navigation bar with links to different sections of the app.

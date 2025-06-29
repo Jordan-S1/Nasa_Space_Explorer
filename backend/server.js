@@ -10,8 +10,19 @@ const app = express();
 const PORT = process.env.PORT;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173', // Vite dev server
+    'https://nasa-space-explorer-hazel.vercel.app' // Deployed frontend
+  ],
+  credentials: true // if you're using cookies/sessions
+}));
 app.use(express.json());
+
+// health check route
+app.get("/", (req, res) => {
+  res.send("Server is running");
+});
 
 // Routes
 app.use("/api/nasa", nasaRoutes);
